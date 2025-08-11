@@ -1,4 +1,36 @@
+"use client";
+
+import hash from "object-hash";
+import { useState } from "react";
+import { addLink } from "../services/web3.service.js";
+
 export default function Home() {
+  const [url, setUrl] = useState("");
+  const [fee, setFee] = useState("0");
+  const [message, setMessage] = useState("");
+
+  function onUrlChange(event) {
+    setUrl(event.target.value);
+  }
+
+  function onFeeChange(event) {
+    setFee(event.target.value);
+  }
+
+  function btnCreateClick() {
+    const LINK_ID = hash(url).slice(0, 5);
+    setMessage("Sending your link to blockchain, wait...");
+    addLink({ url: url, linkId: LINK_ID, feeInWei: fee })
+      .then(() => {
+        setUrl("");
+        setFee("0");
+        setMessage(
+          `Your link was created with success: http://localhost:3000/${LINK_ID}`
+        );
+      })
+      .catch((err) => setMessage(err.message));
+  }
+
   return (
     <>
       <div className="container px-4 py-5">
@@ -23,18 +55,34 @@ export default function Home() {
               to protect your link with BNB technology.
             </p>
             <div className="form-floating mb-3">
-              <input type="text" id="url" className="form-control" />
+              <input
+                id="url"
+                type="text"
+                value={url || ""}
+                onChange={onUrlChange}
+                className="form-control"
+              />
               <label htmlFor="url">Link: </label>
             </div>
             <div className="row">
               <div className="col-6">
                 <div className="form-floating">
-                  <input type="number" id="fee" className="form-control" />
-                  <label htmlFor="fee">Fee per click(wei): </label>
+                  <input
+                    id="fee"
+                    type="number"
+                    value={fee || "0"}
+                    onChange={onFeeChange}
+                    className="form-control"
+                  />
+                  <label htmlFor="fee">Fee per click(wei):</label>
                 </div>
               </div>
               <div className="col-6">
-                <button type="button" className="btn btn-primary w-100 h-100">
+                <button
+                  type="button"
+                  onClick={btnCreateClick}
+                  className="btn btn-primary w-100 h-100"
+                >
                   <img
                     width={32}
                     alt="meta-logo"
@@ -45,6 +93,13 @@ export default function Home() {
                 </button>
               </div>
             </div>
+            {message ? (
+              <div className="alert alert-success p-3 col-12 mt-3" role="alert">
+                {message}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
