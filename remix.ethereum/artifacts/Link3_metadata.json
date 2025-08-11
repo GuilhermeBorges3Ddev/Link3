@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -26,6 +31,32 @@
 				"name": "addLink",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "comission",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -87,6 +118,26 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "linkId",
+						"type": "string"
+					}
+				],
+				"name": "payLink",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -117,11 +168,11 @@
 	},
 	"sources": {
 		"contracts/Link3.sol": {
-			"keccak256": "0x9e32d43d6c41d29e764bce6fb7098ad234cb57503fcbfd53cd24b573726a1ba4",
+			"keccak256": "0xef0b77032294762113e59571234dc950b6c72befa187702800061a0ba1e1ae54",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a331d2a53cc2f47c055c1746311f37a42c36d53106191a39eea02ec726e04631",
-				"dweb:/ipfs/QmTB98YvHvSD4PNvq871yTbm97W7Na58R3yKkpFnbeEHwE"
+				"bzz-raw://ac6e43c5529001ed55106c12bf5745f58ab8a3b63ce7618929ec6e5d108292fe",
+				"dweb:/ipfs/QmXt4d7NHpNnwDLPHKizw8Pv7QE1iqiAefZj4iJeJ4B3ps"
 			]
 		}
 	},
